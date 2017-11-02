@@ -1,0 +1,71 @@
+@import "../variables";
+
+.issue-form {
+  margin: 50px 0;
+
+  .inputs {
+    display: flex;
+  }
+
+  .issue {
+    flex: 1;
+    margin-left: 20px;
+  }
+
+  .pt-form-group {
+    margin: 0 0 25px;
+
+    label.pt-label {
+      margin-bottom: 15px;
+    }
+
+    .pt-form-helper-text {
+      margin-top: 10px;
+    }
+
+    .pt-input {
+      box-shadow: none;
+      border: 1px solid $border-grey;
+      padding: 20px;
+      height: 40px;
+      border-radius: 5px;
+
+      &::placeholder {
+        color: $dark-grey;
+        font-size: 13px;
+      }
+    }
+
+    textarea.pt-input {
+      height: auto;
+      min-height: 292px;
+      padding: 20px;
+    }
+
+    .pt-form-helper-text {
+      padding-right: 30px;
+    }
+  }
+
+  .buttons {
+    text-align: right;
+
+    .pt-button {
+      margin-right: 10px;
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 850px) {
+  .issue-form .inputs {
+    flex-direction: column;
+
+    .issue {
+      margin-left: 0;
+    }
+  }
+}

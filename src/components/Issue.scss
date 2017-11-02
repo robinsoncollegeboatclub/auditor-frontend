@@ -1,0 +1,61 @@
+@import "../variables";
+
+.issue-inner {
+  background: $white;
+  border-radius: 2px;
+  border: 1px solid $border-grey;
+  margin: 15px 0;
+
+  .info {
+    padding: 25px;
+    position: relative;
+
+    .description {
+      font-weight: 600;
+      font-size: 16px;
+    }
+
+    .issue-number {
+      font-size: 14px;
+      font-weight: 700;
+      color: $medium-grey;
+      position: absolute;
+      top: 15px;
+      right: 15px;
+    }
+  }
+
+  .details {
+    display: flex;
+
+    .detail {
+      flex: 1;
+      border: solid $border-grey;
+      border-width: 1px 1px 0 1px;
+      padding: 10px 10px 15px;
+      position: relative;
+
+      &:first-child {
+        border-left-width: 0;
+      }
+
+      &:last-child {
+        border-right-width: 0;
+      }
+
+      .key {
+        font-size: 11px;
+        text-transform: uppercase;
+        font-weight: 700;
+        color: $medium-grey;
+        margin-bottom: 3px;
+      }
+
+      .value {
+        text-align: center;
+        font-size: 14px;
+        margin: 0;
+      }
+    }
+  }
+}

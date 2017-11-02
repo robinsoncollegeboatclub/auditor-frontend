@@ -1,0 +1,15 @@
+.issues-block {
+  margin: 50px -15px;
+
+  .issue {
+    width: 50%;
+    padding: 0 15px;
+    display: inline-block;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .issues-block .issue {
+    width: 100%;
+  }
+}

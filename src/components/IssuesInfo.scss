@@ -1,0 +1,27 @@
+.issues-info {
+  display: flex;
+  margin: 30px auto 0;
+  align-items: center;
+  max-width: 600px;
+  min-height: 34px;
+
+  .issues-summary {
+    flex: 1;
+  }
+
+  &.form-open .issues-summary {
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .issues-info {
+    flex-direction: column;
+
+    .issues-summary {
+      flex: 0;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+  }
+}
