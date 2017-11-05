@@ -7,6 +7,7 @@ import defaultStore from "../defaultStore";
 
 // import the actions
 import {
+  CREATE_FAULT_FAILED, CREATE_FAULT_SUCCEEDED,
   FAULT_FETCH_FAILED,
   FAULT_FETCH_SUCCEEDED,
 } from "./FaultActions";
@@ -37,6 +38,21 @@ export const reducer: Reducer<ResourceStore<Fault>> =
           ...faultStore,
           allIds: Array.from(idSet),
           byId,
+        };
+
+      case CREATE_FAULT_FAILED:
+        return {
+          ...faultStore,
+          errors: [...faultStore.errors, action.error],
+        };
+
+      case CREATE_FAULT_SUCCEEDED:
+        const fault: Fault = action.fault;
+
+        return {
+          ...faultStore,
+          allIds: [...faultStore.allIds, fault.id],
+          byId: { ...faultStore.byId, [fault.id]: fault },
         };
 
       default:

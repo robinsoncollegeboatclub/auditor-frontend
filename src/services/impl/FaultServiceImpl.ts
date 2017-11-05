@@ -9,7 +9,7 @@ import Fault, { APIFault, CreateFaultDTO, UpdateFaultDTO } from "../../models/Fa
 export class FaultServiceImpl implements FaultService {
   public async createFault(createFaultDto: CreateFaultDTO): Promise<Fault> {
     const response: AxiosResponse = await axios.post(
-      `${process.env.API_URL}/faults`,
+      `${process.env.API_URL}/faults/`,
       this.mapToExternal({
         ...createFaultDto,
         status: "todo",
@@ -21,14 +21,14 @@ export class FaultServiceImpl implements FaultService {
   }
 
   public async getFaults(): Promise<Fault[]> {
-    const response: AxiosResponse = await axios.get(`${process.env.API_URL}/faults`);
+    const response: AxiosResponse = await axios.get(`${process.env.API_URL}/faults/`);
     const faults: APIFault[] = response.data;
     return faults.map((fault: APIFault) => this.mapToInternal(fault));
   }
 
   public async updateFault(id: number, updateFaultDto: UpdateFaultDTO): Promise<Fault> {
     const response: AxiosResponse = await axios.patch(
-      `${process.env.API_URL}/faults/${id}`,
+      `${process.env.API_URL}/faults/${id}/`,
       this.mapToExternal(updateFaultDto),
     );
 
