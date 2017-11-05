@@ -5,9 +5,10 @@ import "./IssueForm.scss";
 
 export interface IssueFormProps {
   assignee: string;
-  issueDescription: string;
+  description: string;
   itemDescription: string;
   itemName: string;
+  loading: boolean;
   onCancel: () => void;
   onChangeAssignee: React.FormEventHandler<HTMLInputElement>;
   onChangeIssueDescription: React.ChangeEventHandler<HTMLTextAreaElement>;
@@ -20,9 +21,10 @@ export default class IssueForm extends React.Component<IssueFormProps, any> {
   public render(): JSX.Element {
     const {
       assignee,
-      issueDescription,
+      description,
       itemDescription,
       itemName,
+      loading,
       onCancel,
       onChangeAssignee,
       onChangeIssueDescription,
@@ -93,7 +95,7 @@ export default class IssueForm extends React.Component<IssueFormProps, any> {
                 id="issue-input"
                 onChange={onChangeIssueDescription}
                 placeholder="Such and such a thing is broken..."
-                value={issueDescription}
+                value={description}
               />
             </FormGroup>
           </div>
@@ -101,7 +103,7 @@ export default class IssueForm extends React.Component<IssueFormProps, any> {
 
         <div className="buttons">
           <Button onClick={onCancel}>Cancel</Button>
-          <Button intent={Intent.PRIMARY} onClick={onSubmit}>Report An Issue</Button>
+          <Button intent={Intent.PRIMARY} loading={loading} onClick={onSubmit}>Report An Issue</Button>
         </div>
       </div>
     );

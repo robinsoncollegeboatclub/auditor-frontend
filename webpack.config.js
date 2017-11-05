@@ -1,4 +1,5 @@
 const CopyWebpackPlugin = require("copy-webpack-plugin");
+const Dotenv = require('dotenv-webpack');
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const path = require("path");
 const webpack = require("webpack");
@@ -11,9 +12,11 @@ const html = new HtmlWebpackPlugin({
 
 const copy = new CopyWebpackPlugin([ { from: 'src/assets', to: 'assets' } ]);
 
+const dotenv = new Dotenv();
+
 const PORT = process.env.PORT || 4000;
 
-const plugins = [hot, html, copy];
+const plugins = [hot, html, copy, dotenv];
 
 module.exports = {
   entry: "./src/index.tsx",
@@ -42,7 +45,7 @@ module.exports = {
             loader: "babel-loader"
           },
           {
-            loader: "awesome-typescript-loader"
+            loader: "ts-loader"
           }
         ]
       },
@@ -75,7 +78,13 @@ module.exports = {
     contentBase: path.join(__dirname, "build"),
     compress: true,
     port: PORT,
-    hot: true
+    hot: true,
+    proxy: [{
+      path: "/faults",
+      target: "http://localhost:8000",
+      changeOrigin: true,
+      secure: false
+    }]
   },
 
   // When importing a module whose path matches one of the following, just

@@ -1,18 +1,30 @@
+import classNames from "classnames";
+import { startCase } from "lodash";
 import * as React from "react";
 
 import "./ProgressBar.scss";
 
-export default class ProgressBar extends React.Component<any, any> {
+export interface ProgressBarProps {
+  status: string;
+}
+
+export default class ProgressBar extends React.Component<ProgressBarProps, any> {
   public render(): JSX.Element {
+    const {
+      status,
+    } = this.props;
+
+    const progressBarClass = classNames("progress-bar", status);
+
     return (
-      <div className="progress-bar complete">
+      <div className={progressBarClass}>
         <div className="blocks">
           <div className="block one" />
           <div className="block two" />
           <div className="block three" />
         </div>
 
-        <span className="status">Complete</span>
+        <span className="status">{startCase(status)}</span>
       </div>
     );
   }
