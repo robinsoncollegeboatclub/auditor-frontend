@@ -1,9 +1,14 @@
 import autobind from "autobind-decorator";
 import * as React from "react";
+import { Store } from "redux";
 
+import TYPES from "../bindings/types";
 import Issues from "../components/Issues";
 import IssueForm from "../components/IssueForm";
 import IssuesInfo from "../components/IssuesInfo";
+import { faultFetchRequested } from "../data/faults/FaultActions";
+import ApplicationStore from "../models/ApplicationStore";
+import { lazyInject } from "../startup/inversify";
 
 import "./IssuesPage.scss";
 
@@ -23,6 +28,14 @@ export default class IssuesPage extends React.Component<any, IssuesPageState> {
     itemDescription: "",
     itemName: "",
   };
+
+  @lazyInject(TYPES.Store)
+  private store: Store<ApplicationStore>;
+
+  public componentWillMount(): void {
+    const action = faultFetchRequested();
+    this.store.dispatch(action);
+  }
 
   public render(): JSX.Element {
     const {
